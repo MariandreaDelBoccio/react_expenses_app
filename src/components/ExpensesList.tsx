@@ -3,7 +3,6 @@ import { Header, Title } from "../elements/Header";
 import BackBtn from "../elements/BackBtn";
 
 function ExpensesList() {
-
     return (
         <>
             <Helmet>
