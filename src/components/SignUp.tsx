@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { auth } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Alert from "../elements/Alert";
 
 const Svg = styled.img`
     width: 100%auto;
@@ -20,6 +21,9 @@ function SignUp() {
     const [mail, changeMail] = useState('');
     const [password, changePassword] = useState('');
     const [password2, changePassword2] = useState('');
+    const [alertStatus, changeAlertStatus] = useState(false);
+    const [alert, changeAlert] = useState('');
+    const [alertType, changeAlertType] = useState('error');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         switch(e.target.name){
@@ -39,18 +43,34 @@ function SignUp() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        changeAlertStatus(false);
+        changeAlert('');
 
         const regExp = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
-        if((!regExp.test(mail)) || (mail === '' || password === '' || password2 === '') || (password !== password2)) return;
+        if((!regExp.test(mail)) || (mail === '' || password === '' || password2 === '') || (password !== password2)) {
+            changeAlertStatus(true);
+            changeAlert('Please check the email and if passwords are equal.')
+            return
+        }
 
         try {
             await createUserWithEmailAndPassword(auth, mail, password)
-            navigate('/');
+            changeAlertStatus(true)
+            changeAlert('User successfully created.')
+            changeAlertType('success')
+
+            // Wait for the alert to show up
+            setTimeout(() => {
+                navigate('/');
+            }, 1000);
         } catch(e: unknown) {
+            console.log(e);
+            
+            changeAlertStatus(true);
             const error = e as {code: string, message: string}
-            const errString = error.message.split('/')[1].replace(')', '').replace('-', ' ')
-            console.log(errString.charAt(0).toUpperCase() + errString.substring(1))
-        }
+            const errString = error.message.split('/')[1].replace(')', '').replace(/-/g, ' ')
+            changeAlert(errString.charAt(0).toUpperCase() + errString.substring(1))
+        } 
         
     }
 
@@ -80,6 +100,8 @@ function SignUp() {
                     <Button as="button" to="/" $primary type="submit">Sign Up</Button>
                 </ButtonContainer>
             </Form>
+
+            <Alert $type={alertType} $message={alert} $alertStatus={alertStatus} $changeAlertStatus={changeAlertStatus} />
         </>
     )
 }
