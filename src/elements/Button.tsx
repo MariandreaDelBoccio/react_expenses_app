@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const Button = styled(Link)<{ $primary?: boolean; $hasIcon?: boolean; $bigIcon?: boolean }>`
     background: ${(props) => props.$primary ? '#5B69E2' : '#000'};
     width: ${(props) => props.$hasIcon ? '15.62rem' : 'auto'}; /* 250px */
-    margin-left: 1.25rem; /* 20px */
     border: none;
     border-radius: 0.625rem; /* 10px */
     color: #fff;
