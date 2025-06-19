@@ -64,8 +64,6 @@ function SignUp() {
                 navigate('/');
             }, 1000);
         } catch(e: unknown) {
-            console.log(e);
-            
             changeAlertStatus(true);
             const error = e as {code: string, message: string}
             const errString = error.message.split('/')[1].replace(')', '').replace(/-/g, ' ')
