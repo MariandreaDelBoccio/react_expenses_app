@@ -1,3 +1,5 @@
+import type { User } from "firebase/auth"
+
 export interface ButtonProps {
     $primary?: boolean
     $hasIcon?: boolean
@@ -10,3 +12,7 @@ export interface AlertComponentProps {
     $alertStatus: boolean
     $changeAlertStatus: (value: boolean) => void
 }
+
+export type AuthContextType = {
+  user: User | null;
+};
