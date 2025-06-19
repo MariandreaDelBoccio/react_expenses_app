@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import type { ButtonProps } from "../types/types";
 
-const Button = styled(Link)<{ $primary?: boolean; $hasIcon?: boolean; $bigIcon?: boolean }>`
+const Button = styled(Link)<ButtonProps>`
     background: ${(props) => props.$primary ? '#5B69E2' : '#000'};
     width: ${(props) => props.$hasIcon ? '15.62rem' : 'auto'}; /* 250px */
     border: none;
