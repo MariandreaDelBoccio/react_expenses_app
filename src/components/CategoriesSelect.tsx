@@ -3,6 +3,7 @@ import styled from "styled-components";
 import theme from "../theme";
 import Down from '../assets/images/down.svg?react';
 import type { CategoriesSelectProps, Category } from "../types/types";
+import CategoryICon from "../elements/CategoryIcons";
 
 const SelectContainer = styled.div`
     background: ${theme.grisClaro};
@@ -76,7 +77,7 @@ const CategoriesSelect = ({category, changeCategory}: CategoriesSelectProps) => 
         {id: 'shopping', text: 'Shopping'},
         {id: 'fun', text: 'Fun'}
     ]
-
+    
     return (
         <SelectContainer onClick={() => changeShowSelect(!showSelect)}>
             <SelectedOption>{category} <Down /></SelectedOption>
@@ -84,7 +85,10 @@ const CategoriesSelect = ({category, changeCategory}: CategoriesSelectProps) => 
             {showSelect &&
                 <Options>
                     {categories.map((category) => {
-                        return <Option key={category.id} data-value={category.id} onClick={handleClick}>{category.text}</Option>
+                        return  <Option key={category.id} data-value={category.id} onClick={handleClick}>
+                                    <CategoryICon id={category.id} />
+                                    {category.text}
+                                </Option>
                     })}
                 </Options>
             }
