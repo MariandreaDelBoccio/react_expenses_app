@@ -13,6 +13,7 @@ import SignUp from './components/SignUp.tsx';
 import { HelmetProvider } from 'react-helmet-async';
 import Background from './elements/Background.tsx';
 import { AuthProvider } from './context/AuthContext.tsx';
+import PrivateRoute from './components/PrivateRoute.tsx';
 
 WebFont.load({
   google: {
@@ -31,14 +32,19 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/login" element={<Login />}/>
               {/* Sign Up */}
               <Route path="/sign-up" element={<SignUp />}/>
-              {/* Expenses edit */}
-              <Route path="/edit/:id" element={<EditExpenses />}/>
-              {/* Expenses by ategories */}
-              <Route path="/categories" element={<CategoryExpenses />}/>
-              {/* Expenses list */}
-              <Route path="/list" element={<ExpensesList />}/>
-              {/* Default */}
-              <Route path="/" element={<App />}/>
+
+              {/* Private routes */}
+              <Route element={<PrivateRoute />}>
+                {/* Expenses by ategories */}
+                <Route path="/categories" element={<CategoryExpenses />}/>
+                {/* Expenses list */}
+                <Route path="/list" element={<ExpensesList />}/>
+                {/* Default */}
+                <Route path="/" element={<App />}/>
+                {/* Expenses edit */}
+                <Route path="/edit/:id" element={<EditExpenses />}/>
+              </Route>
+
               {/* Not found */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
