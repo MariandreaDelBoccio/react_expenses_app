@@ -4,7 +4,7 @@ import type { ButtonProps } from "../types/types";
 
 const Button = styled(Link)<ButtonProps>`
     background: ${(props) => props.$primary ? '#5B69E2' : '#000'};
-    width: ${(props) => props.$hasIcon ? '15.62rem' : 'auto'}; /* 250px */
+    width: ${(props) => props.$hasIcon ? 'fit-content' : 'auto'}; /* 250px */
     border: none;
     border-radius: 0.625rem; /* 10px */
     color: #fff;
