@@ -3,11 +3,13 @@ import { Input, ButtonContainer, BigInput, FilterContainer, Form } from "../elem
 import Button from "../elements/Button";
 import PlusIcon from '../assets/images/plus.svg?react'
 import CategoriesSelect from "./CategoriesSelect";
+import DatePicker from "./DatePicker";
 
 const ExpensesForm = () => {
     const [descInput, changeDescInput] = useState('');
     const [valueInput, changeValueInput] = useState('');
     const [category, changeCategory] = useState('home');
+    const [selectedDate, changeSelectedDate] = useState<Date>(new Date());
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.name === 'description') {
@@ -21,7 +23,7 @@ const ExpensesForm = () => {
         <Form>
             <FilterContainer>
                 <CategoriesSelect category={category} changeCategory={changeCategory}  />
-                <p>Date picker</p>
+                <DatePicker date={selectedDate} changeDate={(date) => {if(date) changeSelectedDate(date)}} />
             </FilterContainer>
 
             <div>

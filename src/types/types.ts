@@ -27,3 +27,8 @@ export type CategoriesSelectProps = {
   category: string;
   changeCategory: (value: string) => void;
 }
+
+export type DatePickerProps = {
+  date: Date;
+  changeDate: (value: Date | undefined) => void;
+}
