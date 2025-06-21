@@ -23,6 +23,8 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: space-around;
     input {
+        border: none;
+        border-bottom: 1px solid rgba(0,0,0,.2);
         width: 100%;
         text-align: center;
         padding: 2.5rem 0;
@@ -30,6 +32,7 @@ const Form = styled.form`
         &::placeholder {
             color: rgba(0,0,0,.2);
         }
+            
     }
  
     @media(max-width: 60rem){ /* 950px */
@@ -49,7 +52,7 @@ const Input = styled.input`
     }
 `;
  
-const BigInpput = styled.img`
+const BigInput = styled.input`
     font-size: 4.37rem; /* 70px */
     font-weight: bold;
 `;
@@ -60,4 +63,4 @@ const ButtonContainer = styled.div`
     margin: 2.5rem 0;  /* 40px */
 `;
 
-export {FilterContainer, Form, Input, BigInpput, ButtonContainer};
+export {FilterContainer, Form, Input, BigInput, ButtonContainer};

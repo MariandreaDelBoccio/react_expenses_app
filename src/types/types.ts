@@ -17,3 +17,13 @@ export type AuthContextType = {
   user: User | null;
   loading: boolean;
 };
+
+export type Category = {
+  text: string;
+  id: string;
+}
+
+export type CategoriesSelectProps = {
+  category: string;
+  changeCategory: (value: string) => void;
+}
