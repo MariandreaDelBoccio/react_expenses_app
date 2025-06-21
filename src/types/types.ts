@@ -15,4 +15,5 @@ export interface AlertComponentProps {
 
 export type AuthContextType = {
   user: User | null;
+  loading: boolean;
 };

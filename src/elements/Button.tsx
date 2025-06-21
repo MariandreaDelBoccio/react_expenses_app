@@ -19,6 +19,7 @@ const Button = styled(Link)<ButtonProps>`
     justify-content: space-between;
     align-items: center;
     outline: none;
+    margin: 5px;
  
     svg {
         height: ${(props) => props.$bigIcon ? '100%' : '0.75rem;'};  /* 12px */
