@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import theme from "../theme";
 import Down from '../assets/images/down.svg?react';
@@ -62,10 +62,27 @@ const Option = styled.div`
 
 const CategoriesSelect = ({category, changeCategory}: CategoriesSelectProps) => {
     const [showSelect, changeShowSelect] = useState(false);
+    const selectRef = useRef<HTMLDivElement>(null)
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         changeCategory(e.currentTarget.dataset.value || '')
     }
+
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
+                changeShowSelect(false);
+            }
+        }
+        
+        if (showSelect) {
+            document.addEventListener("mousedown", handleOutsideClick);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, [showSelect])
 
     const categories: Category[] = [
         {id: 'food', text: 'Food'},

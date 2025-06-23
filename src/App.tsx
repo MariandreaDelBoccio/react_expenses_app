@@ -3,6 +3,7 @@ import { Header, Title, HeaderContainer, ButtonContainer } from "./elements/Head
 import Button from "./elements/Button";
 import LogoutButton from "./elements/LogoutBtn";
 import ExpensesForm from "./components/ExpensesForm";
+import TotalBar from "./components/totalBar";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       </Header>
 
       <ExpensesForm />
+      <TotalBar />
     </>
   )
 }

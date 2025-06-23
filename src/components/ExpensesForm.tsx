@@ -4,12 +4,20 @@ import Button from "../elements/Button";
 import PlusIcon from '../assets/images/plus.svg?react'
 import CategoriesSelect from "./CategoriesSelect";
 import DatePicker from "./DatePicker";
+import addExpense from "../firebase/addExpense";
+import { getUnixTime } from "date-fns";
+import useAuth from "../context/useAuth";
+import Alert from "../elements/Alert";
 
 const ExpensesForm = () => {
     const [descInput, changeDescInput] = useState('');
     const [valueInput, changeValueInput] = useState('');
     const [category, changeCategory] = useState('home');
     const [selectedDate, changeSelectedDate] = useState<Date>(new Date());
+    const [alertStatus, changeAlertStatus] = useState(false);
+    const [alert, changeAlert] = useState('');
+    const [alertType, changeAlertType] = useState('error')
+    const {user} = useAuth()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.name === 'description') {
@@ -19,8 +27,43 @@ const ExpensesForm = () => {
         }
     }
 
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        const quantity = parseFloat(valueInput).toFixed(2)
+
+        if(descInput !== '' && valueInput !== '') {
+            addExpense({
+                category,
+                description: descInput,
+                quantity,
+                date: getUnixTime(selectedDate),
+                id: user?.uid
+            })
+            .then(() => {
+                changeCategory('home')
+                changeDescInput('')
+                changeValueInput('')
+                changeSelectedDate(new Date())
+
+                changeAlertStatus(true)
+                changeAlertType('success')
+                changeAlert('Expense added successfully.')
+            })
+            .catch((error: { message: string }) => {
+                changeAlertStatus(true)
+                changeAlertType('error')
+                changeAlert(error.message)
+            })
+        } else {
+            changeAlertStatus(true);
+            changeAlert('Please fill all the data.')
+        }
+
+    }
+
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <FilterContainer>
                 <CategoriesSelect category={category} changeCategory={changeCategory}  />
                 <DatePicker date={selectedDate} changeDate={(date) => {if(date) changeSelectedDate(date)}} />
@@ -50,6 +93,10 @@ const ExpensesForm = () => {
                     <PlusIcon />
                 </Button>
             </ButtonContainer>
+
+            <Alert 
+                $type={alertType} $message={alert} $alertStatus={alertStatus} $changeAlertStatus={changeAlertStatus}
+            />
         </Form>
     )
 }
