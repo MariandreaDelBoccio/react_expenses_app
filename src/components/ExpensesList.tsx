@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import { format, fromUnixTime } from "date-fns";
 import type { FbStorageExpenses } from "../types/types";
+import deleteExpense from "../firebase/deleteExpense";
 
 function ExpensesList() {
     const [expenses, getMoreExpenses, moreToLoad] = useGetExpenses()
@@ -74,7 +75,7 @@ function ExpensesList() {
                                     <ActionButton as={Link} to={`/edit/${expense.id}`}>
                                         <EditIcon />
                                     </ActionButton>
-                                    <ActionButton>
+                                    <ActionButton onClick={() => deleteExpense(expense.id as string)}>
                                         <DeleteIcon />
                                     </ActionButton>
                                 </ButtonContainer>
