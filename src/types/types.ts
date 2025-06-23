@@ -35,8 +35,8 @@ export type DatePickerProps = {
 
 export type FbStorageExpenses = {
   category: string
-   description: string 
-   quantity: string 
-   date: number 
-   id: string | undefined
+  description: string 
+  quantity: string 
+  date: number 
+  id: string | undefined
 }
