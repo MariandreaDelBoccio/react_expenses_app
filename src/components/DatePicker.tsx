@@ -58,6 +58,13 @@ const InputContainer = styled.div`
 const DatePicker = ({date, changeDate}: DatePickerProps) => {
     const [show, changeVisible] = useState(false);
 
+    const handleSelect = (selectedDate?: Date) => {
+        if (selectedDate) {
+            changeDate(selectedDate);
+            changeVisible(false); // Cierra el calendario
+        }
+    };
+
     return (
         <InputContainer>
             <input onClick={() => changeVisible(!show)} type="text" readOnly value={new Date(date).toLocaleDateString('en-US', {
@@ -67,7 +74,7 @@ const DatePicker = ({date, changeDate}: DatePickerProps) => {
             })}  />
             {show && <DayPicker 
                 mode="single" 
-                onSelect={changeDate} 
+                onSelect={handleSelect} 
                 selected={date}
                 required={false}
             />}

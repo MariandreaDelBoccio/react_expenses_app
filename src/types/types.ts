@@ -32,3 +32,11 @@ export type DatePickerProps = {
   date: Date;
   changeDate: (value: Date | undefined) => void;
 }
+
+export type FbStorageExpenses = {
+  category: string
+   description: string 
+   quantity: string 
+   date: number 
+   id: string | undefined
+}
