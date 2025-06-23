@@ -1,4 +1,5 @@
 import type { User } from "firebase/auth"
+import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore"
 
 export interface ButtonProps {
     $primary?: boolean
@@ -39,4 +40,8 @@ export type FbStorageExpenses = {
   quantity: string 
   date: number 
   id: string | undefined
+}
+
+export interface ExpensesFormProps {
+    expense?: QueryDocumentSnapshot<DocumentData> | null;
 }
