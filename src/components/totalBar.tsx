@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import theme from "../theme";
 import formatCurrency from "../functions/currencyConvertion";
+import useMonthlyTotal from "../hooks/useMonthlyTotal";
 
 const TotalBarStyled = styled.div`
     background: ${theme.verde};
@@ -22,10 +23,12 @@ const TotalBarStyled = styled.div`
 
 
 const TotalBar = () => {
+    const {total} = useMonthlyTotal()
+
     return (
         <TotalBarStyled>
-            <p>Total</p>
-            <p>{formatCurrency(0)}</p>
+            <p>Monthly total:</p>
+            <p>{formatCurrency(total)}</p>
         </TotalBarStyled>
     )
 }

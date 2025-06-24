@@ -14,6 +14,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Background from './elements/Background.tsx';
 import { AuthProvider } from './context/AuthContext.tsx';
 import PrivateRoute from './components/PrivateRoute.tsx';
+import { TotalAmountProvider } from './context/TotalMonthlyAmountContext.tsx';
 
 WebFont.load({
   google: {
@@ -25,31 +26,33 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
       <AuthProvider>
-        <BrowserRouter>
-          <Container>
-            <Routes>
-              {/* Login */}
-              <Route path="/login" element={<Login />}/>
-              {/* Sign Up */}
-              <Route path="/sign-up" element={<SignUp />}/>
+        <TotalAmountProvider>
+          <BrowserRouter>
+            <Container>
+              <Routes>
+                {/* Login */}
+                <Route path="/login" element={<Login />}/>
+                {/* Sign Up */}
+                <Route path="/sign-up" element={<SignUp />}/>
 
-              {/* Private routes */}
-              <Route element={<PrivateRoute />}>
-                {/* Expenses by ategories */}
-                <Route path="/categories" element={<CategoryExpenses />}/>
-                {/* Expenses list */}
-                <Route path="/list" element={<ExpensesList />}/>
-                {/* Default */}
-                <Route path="/" element={<App />}/>
-                {/* Expenses edit */}
-                <Route path="/edit/:id" element={<EditExpenses />}/>
-              </Route>
+                {/* Private routes */}
+                <Route element={<PrivateRoute />}>
+                  {/* Expenses by ategories */}
+                  <Route path="/categories" element={<CategoryExpenses />}/>
+                  {/* Expenses list */}
+                  <Route path="/list" element={<ExpensesList />}/>
+                  {/* Default */}
+                  <Route path="/" element={<App />}/>
+                  {/* Expenses edit */}
+                  <Route path="/edit/:id" element={<EditExpenses />}/>
+                </Route>
 
-              {/* Not found */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Container>
-        </BrowserRouter>
+                {/* Not found */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Container>
+          </BrowserRouter>
+        </TotalAmountProvider>
       </AuthProvider>
     </HelmetProvider>
 
