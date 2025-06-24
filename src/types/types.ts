@@ -19,6 +19,10 @@ export type AuthContextType = {
   loading: boolean;
 };
 
+export type MonthlyAmountContextType = {
+  total: number
+}
+
 export type Category = {
   text: string;
   id: string;
@@ -45,3 +49,10 @@ export type FbStorageExpenses = {
 export interface ExpensesFormProps {
     expense?: QueryDocumentSnapshot<DocumentData> | null;
 }
+
+export type CategoryKey = 'food' | 'debt' | 'home' | 'transport' | 'clothes' | 'health' | 'shopping' | 'fun';
+
+export type ExpensesByCategory = {
+    category: CategoryKey;
+    quantity: number;
+}[];
