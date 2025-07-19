@@ -11,11 +11,17 @@ import { auth } from "../firebase/firebaseConfig";
 import Alert from "../elements/Alert";
 import EyeOff from "../assets/images/eye_off.svg?react";
 import EyeShow from "../assets/images/eye_show.svg?react";
+import useIsMobile from "../hooks/useIsMobile";
 
 const Svg = styled.img`
   width: fit-content;
   max-height: 8.25rem;
   margin: 0 auto;
+
+  @media (max-width: 60rem) {
+    /* 950px */
+    width: auto;
+  }
 `;
 
 const ShowPasswordBtn = styled.button`
@@ -42,6 +48,7 @@ function Login() {
   const [alertStatus, changeAlertStatus] = useState(false);
   const [alert, changeAlert] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
@@ -117,9 +124,13 @@ function Login() {
           />
           <ShowPasswordBtn type="button" onClick={toggleShowPassword}>
             {showPassword ? (
-              <EyeOff style={{ width: "3rem" }} />
+              <EyeOff
+                style={isMobile ? { width: "2rem" } : { width: "3rem" }}
+              />
             ) : (
-              <EyeShow style={{ width: "3rem" }} />
+              <EyeShow
+                style={isMobile ? { width: "2rem" } : { width: "3rem" }}
+              />
             )}
           </ShowPasswordBtn>
         </PasswordWrapper>

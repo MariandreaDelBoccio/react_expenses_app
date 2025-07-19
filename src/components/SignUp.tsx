@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../elements/Alert";
 import EyeOff from "../assets/images/eye_off.svg?react";
 import EyeShow from "../assets/images/eye_show.svg?react";
+import useIsMobile from "../hooks/useIsMobile";
 
 const Svg = styled.img`
   width: 100%auto;
@@ -33,7 +34,6 @@ const ShowPasswordBtn = styled.button`
   justify-content: center;
 `;
 
-
 const PasswordWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -49,6 +49,7 @@ function SignUp() {
   const [alertType, changeAlertType] = useState("error");
   const [showFirstPassword, setShowFirstPassword] = useState(false);
   const [showLastPassword, setShowLastPassword] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -146,11 +147,26 @@ function SignUp() {
             value={password}
             onChange={handleChange}
           />
-          <ShowPasswordBtn type="button" onClick={() => toggleShowFirstPassword()}>
+          <ShowPasswordBtn
+            type="button"
+            onClick={() => toggleShowFirstPassword()}
+          >
             {showFirstPassword ? (
-              <EyeOff style={{ width: "3rem", height: "3rem" }} />
+              <EyeOff
+                style={
+                  isMobile
+                    ? { width: "2rem", height: "2rem" }
+                    : { width: "3rem", height: "3rem" }
+                }
+              />
             ) : (
-              <EyeShow style={{ width: "3rem", height: "3rem" }} />
+              <EyeShow
+                style={
+                  isMobile
+                    ? { width: "2rem", height: "2rem" }
+                    : { width: "3rem", height: "3rem" }
+                }
+              />
             )}
           </ShowPasswordBtn>
         </PasswordWrapper>
@@ -162,11 +178,26 @@ function SignUp() {
             value={password2}
             onChange={handleChange}
           />
-          <ShowPasswordBtn type="button" onClick={() => toggleShowLastPassword()}>
+          <ShowPasswordBtn
+            type="button"
+            onClick={() => toggleShowLastPassword()}
+          >
             {showLastPassword ? (
-              <EyeOff style={{ width: "3rem", height: "3rem" }} />
+              <EyeOff
+                style={
+                  isMobile
+                    ? { width: "2rem", height: "2rem" }
+                    : { width: "3rem", height: "3rem" }
+                }
+              />
             ) : (
-              <EyeShow style={{ width: "3rem", height: "3rem" }} />
+              <EyeShow
+                style={
+                  isMobile
+                    ? { width: "2rem", height: "2rem" }
+                    : { width: "3rem", height: "3rem" }
+                }
+              />
             )}
           </ShowPasswordBtn>
         </PasswordWrapper>
