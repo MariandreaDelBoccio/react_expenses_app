@@ -1,26 +1,54 @@
 import { Helmet } from "react-helmet-async";
-import { Header, Title, HeaderContainer, ButtonContainer } from "./elements/Header";
+import {
+  Header,
+  Title,
+  HeaderContainer,
+  ButtonContainer,
+} from "./elements/Header";
 import Button from "./elements/Button";
 import LogoutButton from "./elements/LogoutBtn";
 import ExpensesForm from "./components/ExpensesForm";
 import TotalBar from "./components/totalBar";
+import CatIcon from "./assets/images/cat_icon.svg?react";
+import ListIcon from "./assets/images/list_icon.svg?react";
+import PiggyBank from "./assets/images/piggy_bank.svg?react";
+import useIsMobile from "./hooks/useIsMobile";
 
 function App() {
+  const isMobile = useIsMobile();
 
   return (
     <>
       <Helmet>
         <title>Add expenses</title>
-        <link rel="icon" type="image/x-icon" href='../public/favicon.ico' />
+        <link rel="icon" type="image/x-icon" href="../public/favicon.ico" />
       </Helmet>
       <Header>
         <HeaderContainer>
           <Title>Add expenses</Title>
           <ButtonContainer>
-            <Button to="/categories">Categories</Button>
-            <Button to="/list">Expenses list</Button>
+            <Button to="/categories">
+              {isMobile ? (
+                <CatIcon style={{ width: "2rem", height: "2rem" }} />
+              ) : (
+                <span>Categories</span>
+              )}
+            </Button>
+            <Button to="/list">
+              {isMobile ? (
+                <ListIcon style={{ width: "2rem", height: "2rem" }} />
+              ) : (
+                <span>Expenses List</span>
+              )}
+            </Button>
+            <Button to="/money-box">
+              {isMobile ? (
+                <PiggyBank style={{ width: "2rem", height: "2rem" }} />
+              ) : (
+                <span>Money Box</span>
+              )}
+            </Button>
             <LogoutButton />
-
           </ButtonContainer>
         </HeaderContainer>
       </Header>
@@ -28,7 +56,7 @@ function App() {
       <ExpensesForm />
       <TotalBar />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

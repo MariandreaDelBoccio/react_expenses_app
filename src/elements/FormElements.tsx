@@ -5,6 +5,7 @@ const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.87rem; /* 30px */
+    align-items: flex-end;
  
     @media(max-width: 60rem){ /* 950px */
         flex-direction: column;

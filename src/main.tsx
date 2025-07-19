@@ -15,6 +15,9 @@ import Background from './elements/Background.tsx';
 import { AuthProvider } from './context/AuthContext.tsx';
 import PrivateRoute from './components/PrivateRoute.tsx';
 import { TotalAmountProvider } from './context/TotalMonthlyAmountContext.tsx';
+import HuchasList from './components/HuchasList.tsx';
+import HuchaForm from './components/HuchaForm.tsx';
+import HuchaDetail from './components/HuchaDetail.tsx';
 
 WebFont.load({
   google: {
@@ -45,6 +48,12 @@ createRoot(document.getElementById('root')!).render(
                   <Route path="/" element={<App />}/>
                   {/* Expenses edit */}
                   <Route path="/edit/:id" element={<EditExpenses />}/>
+                  {/* Huschas List */}
+                  <Route path="/money-box" element={<HuchasList />} />
+                  {/* Huchas form */}
+                  <Route path="/money-box/new" element={<HuchaForm />} />
+                  {/* Hucha Details */}
+                  <Route path="/money-box/:id" element={<HuchaDetail />} />
                 </Route>
 
                 {/* Not found */}

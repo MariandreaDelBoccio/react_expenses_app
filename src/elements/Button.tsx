@@ -2,8 +2,18 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import type { ButtonProps } from "../types/types";
 
+const buttonColor = (props: ButtonProps) => {
+    if(props.$primary) {
+        return '#5B69E2'
+    } else if(props.$color) {
+        return props.$color
+    }
+
+    return '#000'
+}
+
 const Button = styled(Link)<ButtonProps>`
-    background: ${(props) => props.$primary ? '#5B69E2' : '#000'};
+    background: ${(props) => buttonColor(props)};
     width: ${(props) => props.$hasIcon ? 'fit-content' : 'auto'}; /* 250px */
     border: none;
     border-radius: 0.625rem; /* 10px */
@@ -16,7 +26,7 @@ const Button = styled(Link)<ButtonProps>`
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     outline: none;
     margin: 5px;

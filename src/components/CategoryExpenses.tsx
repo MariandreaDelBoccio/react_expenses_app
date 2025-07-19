@@ -14,7 +14,6 @@ import formatCurrency from "../functions/currencyConvertion";
 
 function CategoryExpenses() {
     const expenses = useGetExpenseByCat();
-    console.log(expenses);
 
     return (
         <>

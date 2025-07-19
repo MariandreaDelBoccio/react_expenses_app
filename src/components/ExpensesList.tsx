@@ -23,17 +23,12 @@ import DeleteIcon from '../assets/images/borrar.svg?react';
 import EditIcon from '../assets/images/editar.svg?react';
 import { Link } from "react-router-dom";
 import Button from "../elements/Button";
-import { format, fromUnixTime } from "date-fns";
 import type { FbStorageExpenses } from "../types/types";
 import deleteExpense from "../firebase/deleteExpense";
+import { formatDate } from "../hooks/useFormatDate";
 
 function ExpensesList() {
     const [expenses, getMoreExpenses, moreToLoad] = useGetExpenses()
-
-    const formatDate = (date: number) => {
-        const jsDate = fromUnixTime(date)
-        return format(jsDate, "MMMM, dd yyyy")
-    }
 
     const sameDate = (expenses: FbStorageExpenses[], index: number, expense: FbStorageExpenses) => {
         if(index !== 0) {

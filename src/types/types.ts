@@ -5,6 +5,7 @@ export interface ButtonProps {
     $primary?: boolean
     $hasIcon?: boolean
     $bigIcon?: boolean
+    $color?: string
 }
 
 export interface AlertComponentProps {

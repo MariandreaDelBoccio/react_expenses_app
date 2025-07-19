@@ -61,7 +61,7 @@ const DatePicker = ({date, changeDate}: DatePickerProps) => {
     const handleSelect = (selectedDate?: Date) => {
         if (selectedDate) {
             changeDate(selectedDate);
-            changeVisible(false); // Cierra el calendario
+            changeVisible(false); 
         }
     };
 
