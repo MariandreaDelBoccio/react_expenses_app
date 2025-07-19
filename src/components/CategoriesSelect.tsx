@@ -50,6 +50,12 @@ const Options = styled.div`
   border-radius: 0.625rem; /* 10px */
   max-height: 18.75rem; /* 300px */
   overflow-y: auto;
+  z-index: 2;
+
+  @media (max-width: 60rem) {
+    /* 950px */
+    width: 100%;
+  }
 `;
 
 const Option = styled.div`
