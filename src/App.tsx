@@ -12,6 +12,7 @@ import TotalBar from "./components/totalBar";
 import CatIcon from "./assets/images/cat_icon.svg?react";
 import ListIcon from "./assets/images/list_icon.svg?react";
 import PiggyBank from "./assets/images/piggy_bank.svg?react";
+import Money from './assets/images/money.svg?react';
 import useIsMobile from "./hooks/useIsMobile";
 
 function App() {
@@ -29,23 +30,30 @@ function App() {
           <ButtonContainer>
             <Button to="/categories">
               {isMobile ? (
-                <CatIcon style={{ width: "2rem", height: "2rem" }} />
+                <CatIcon style={{ width: "1.5rem", height: "1.5rem" }} />
               ) : (
                 <span>Categories</span>
               )}
             </Button>
             <Button to="/list">
               {isMobile ? (
-                <ListIcon style={{ width: "2rem", height: "2rem" }} />
+                <ListIcon style={{ width: "1.5rem", height: "1.5rem" }} />
               ) : (
-                <span>Expenses List</span>
+                <span>Expenses</span>
               )}
             </Button>
             <Button to="/money-box">
               {isMobile ? (
-                <PiggyBank style={{ width: "2rem", height: "2rem" }} />
+                <PiggyBank style={{ width: "1.5rem", height: "1.5rem" }} />
               ) : (
-                <span>Money Box</span>
+                <span>Piggy</span>
+              )}
+            </Button>
+            <Button to="/budget-list">
+              {isMobile ? (
+                <Money style={{ width: "1.5rem", height: "1.5rem" }} />
+              ) : (
+                <span>Budget</span>
               )}
             </Button>
             <LogoutButton />

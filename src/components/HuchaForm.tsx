@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { collection, doc, setDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../context/useAuth";
@@ -29,22 +29,26 @@ export default function HuchaForm() {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user) return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!user) return;
 
-    await addDoc(collection(db, "huchas"), {
-      name: category,
-      goal,
-      description,
-      color,
-      deadline: Timestamp.fromDate(deadline),
-      userId: user.uid,
-      createdAt: Timestamp.now(),
-    });
+  const newDocRef = doc(collection(db, "huchas"));
+  const newDocId = newDocRef.id;
 
-    navigate("/money-box");
-  };
+  await setDoc(newDocRef, {
+    id: newDocId,        
+    name: category,
+    goal,
+    description,
+    color,
+    deadline: Timestamp.fromDate(deadline),
+    userId: user.uid,
+    createdAt: Timestamp.now(),
+  });
+
+  navigate("/money-box");
+};
 
   return (
     <>

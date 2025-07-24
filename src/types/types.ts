@@ -21,7 +21,7 @@ export type AuthContextType = {
 };
 
 export type MonthlyAmountContextType = {
-  total: number
+  total: number;
 }
 
 export type Category = {
@@ -57,3 +57,11 @@ export type ExpensesByCategory = {
     category: CategoryKey;
     quantity: number;
 }[];
+
+export interface FbStorageIncomes {
+  id?: string;
+  uidUser: string;
+  description: string;
+  quantity: string;
+  date: number; // timestamp (ms)
+}

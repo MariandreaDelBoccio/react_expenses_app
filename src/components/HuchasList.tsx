@@ -62,7 +62,7 @@ export default function HuchasList() {
 
   useEffect(() => {
     if (!user) return;
-    const q = query(collection(db, "huchas"), where("userId", "==", user.uid));
+    const q = query(collection(db, 'huchas'), where('userId', '==', user.uid));
     const unsub = onSnapshot(q, async (snapshot) => {
       const huchasData: HuchaConAhorros[] = [];
 
@@ -103,10 +103,10 @@ export default function HuchasList() {
       <div style={{ padding: "2.5rem", width: "100%" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {huchas.map((hucha) => (
-            <Link
-              to={`/money-box/${hucha.id}`}
+            <div
+            onClick={() => navigate(`/money-box/${hucha.id}`)}
               key={hucha.id}
-              style={{ textDecoration: "none", color: "inherit" }}
+              style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
             >
               <div
                 style={{
@@ -167,7 +167,7 @@ export default function HuchasList() {
                   </ButtonContainer>
                 </ElementList>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
         <Link
